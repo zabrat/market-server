@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, ObjectId } from 'mongoose';
 import { Role } from 'src/roles/role.schema';
 
 export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
+  _id: ObjectId;
+
   @ApiProperty({ example: 'zasdf@mail.ru', description: 'email' })
   @Prop({ type: String, required: true, unique: true })
   email: string;
